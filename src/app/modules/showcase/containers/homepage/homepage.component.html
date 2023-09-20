@@ -1,0 +1,62 @@
+<img src="assets/images/logo.png" id="center-logo" class="w-[170px] absolute" alt="">
+<section class="flex sm:flex-row flex-col container lg:px-0 px-4 items-center mt-[65px] mx-auto py-8 w-full">
+  <div class="w-full lg:w-1/2 flex flex-col gap-y-2.5">
+    <h1 class="font-bold text-gold text-2xl">Le trophée</h1>
+    <p [innerHTML]="showCase.trophySection"></p>
+  </div>
+  <div class="w-full lg:w-1/2 flex flex-col items-center">
+    <img src="assets/images/trophy.png" class="w-[375px]" alt="">
+    <a routerLink="/le-trophee" class="text-sm hover:underline text-gold italic">En savoir plus sur le trophée conçu par Jean-Pierre Rives</a>
+  </div>
+</section>
+<section class="text-center bg-[#F9F9F9] py-8 w-full">
+  <div class="container text flex lg:px-0 px-4 flex-col gap-y-5 mx-auto">
+    <h1 class="font-bold block text-gold text-2xl">Un objectif simple</h1>
+    <div [innerHTML]="showCase.goalSection"></div>
+  </div>
+</section>
+<section class="flex justify-around container text-center mx-auto py-8 w-full">
+  <div class="w-1/3">
+    <img src="assets/icons/laurel.svg" class="w-[60px] mx-auto h-[60px] bg-gold rounded-full p-1" alt="">
+    <h4 class="handwritting font-medium mt-1.5 text-2xl">Excellence</h4>
+  </div>
+  <div class="w-1/3">
+    <img src="assets/icons/engagement.svg" class="w-[60px] mx-auto h-[60px] bg-gold rounded-full p-1" alt="">
+    <h4 class="handwritting font-medium mt-1.5 text-2xl">Engagement</h4>
+  </div>
+  <div class="w-1/3">
+    <img src="assets/icons/sportif.svg" class="w-[60px] mx-auto h-[60px] bg-gold rounded-full p-1" alt="">
+    <h4 class="handwritting font-medium mt-1.5 text-2xl">Fidélité</h4>
+  </div>
+</section>
+<section *ngIf="applicationEndsAt" class="bg-green w-full py-4">
+  <div class="container mx-auto flex flex-col gap-y-1 text-center text-white">
+    <h1 class="text-2xl font-bold">Clotûre des inscriptions</h1>
+    <h3 class="handwritting text-xl" *ngIf="_days <= 31">{{ _days }} jours - {{ _hours }} heures - {{ _minutes }} minutes</h3>
+    <h3 class="handwritting text-xl" *ngIf="_days > 31">{{ applicationEndsAt | date }}</h3>
+  </div>
+</section>
+<section class="flex flex-col lg:px-0 px-4 container mx-auto py-8 w-full">
+  <h1 class="text-2xl font-bold text-gold text-center">Une initiative de l’Amicale du TOEC</h1>
+  <h4 class="text-center handwritting text-secondary text-2xl mb-2.5">Rassembler, promouvoir et épanouir</h4>
+  <p [innerHTML]="showCase.TOECSection"></p>
+</section>
+<section [ngClass]="gallery.length ? 'bg-green' : 'bg-gold'" class="w-full py-2">
+  <div  class="container mx-auto text-4xl justify-center gap-x-12 flex text-center text-white">
+    <a *ngIf="showCase.ytbUrl" href="{{ showCase.ytbUrl }}"><i class="fa-brands fa-youtube"></i></a>
+    <a *ngIf="showCase.igUrl" href="{{ showCase.igUrl }}"><i class="fa-brands fa-instagram"></i></a>
+    <a *ngIf="showCase.fbUrl" href="{{ showCase.fbUrl }}"><i class="fa-brands fa-facebook"></i></a>
+    <a *ngIf="showCase.linkedInUrl" href="{{ showCase.linkedInUrl }}"><i class="fa-brands fa-linkedin"></i></a>
+  </div>
+</section>
+<section *ngIf="gallery" class="flex flex-col lg:px-0 px-4 container mx-auto py-8 w-full">
+  <h1 class="text-2xl font-bold text-gold mb-4 text-center">Le trophée Jean Salut en photos</h1>
+  <div class="flex lg:flex-row flex-col space-y-2 lg:space-y-0 justify-center items-center gap-x-4">
+    <div (click)="open(1)" [style.background-image]="'url(' + buildPictureUrl(gallery[0]) + ')'" class="self-center bg-center hover:scale-105 hover:cursor-pointer hover:shadow-md transition-all bg-cover max-h-[227px] h-[227px] w-[341px] max-w-[341px]"></div>
+    <div (click)="open(1)" [style.background-image]="'url(' + buildPictureUrl(gallery[1]) + ')'" class="bg-cover hover:cursor-pointer hover:scale-[103%] hover:shadow-md max-h-[287px] transition-all max-w-[431px] h-[287px] w-[431px] bg-center"></div>
+    <div (click)="open(1)" [style.background-image]="'url(' + buildPictureUrl(gallery[2]) + ')'" class="self-center hover:cursor-pointer hover:scale-105 hover:shadow-md bg-center bg-cover transition-all max-h-[227px] h-[227px] w-[341px] max-w-[341px]"></div>
+  </div>
+  <a routerLink="galerie" class="bg-green self-start mt-4 mx-auto hover:bg-dark-green text-white font-medium py-1 px-2 text-sm rounded">
+    Voir toutes les photos
+  </a>
+</section>

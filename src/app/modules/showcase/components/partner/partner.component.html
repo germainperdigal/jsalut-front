@@ -1,0 +1,7 @@
+<section class="container text-center mx-auto py-4">
+  <img *ngIf="partner.fileName" class="max-h-[225px] mx-auto" src="{{ apiUrl + '/partners-img/' + partner.fileName }}" alt="">
+  <h1 class="text-xl mt-4 font-bold text-gold">{{ partner.label }}</h1>
+  <div [innerHTML]="partner.description" class="mt-2"></div>
+  <a *ngIf="partner.website" class="text-blue-800 block hover:underline flex items-center justify-center mt-4" [href]="partner.website"><mat-icon>zoom_in</mat-icon> Découvrir le site</a>
+  <a class="text-green block hover:underline flex items-center justify-center mt-4" routerLink="/partenaires"><mat-icon>chevron_left</mat-icon> Retour à la liste des partenaires</a>
+</section>

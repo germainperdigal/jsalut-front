@@ -1,0 +1,12 @@
+<div (click)="openDesc()" class="px-4 committee-card py-1.5 h-[80px] relative hover:cursor-pointer hover:scale-[102%] transition-all hover:shadow-md rounded-xl flex items-center"
+     [ngClass]="isLightMode ? 'bg-[#F1F1F1]' : 'bg-green'"
+>
+  <span class="z-50 discover absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-xl bg-black text-white text-lg font-bold bg-opacity-50"><mat-icon class="mr-2">search</mat-icon> Découvrir {{ member.label }}</span>
+  <div class="absolute pic">
+    <img src="{{ apiUrl }}/committee-img/{{ member.fileName }}" class="relative h-[95px] w-[95px] rounded-full" alt="">
+  </div>
+  <div class="w-full player-infos text-right">
+    <h2 class="font-bold text-xl" [ngClass]="isLightMode ? 'text-green' : 'text-white'">{{ member.label }}</h2>
+    <h3 class="font-medium text-lg" [ngClass]="isLightMode ? 'text-[#585858]' : 'text-[#EBEBEB]'">{{ member.subtitle }}</h3>
+  </div>
+</div>

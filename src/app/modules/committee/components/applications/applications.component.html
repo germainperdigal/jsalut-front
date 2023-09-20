@@ -1,0 +1,63 @@
+<div class="h-full p-5">
+  <div class="flex flex-col space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold font-gray-800">{{ applications.length }} candidature{{ applications.length > 1 ? 's' : '' }} pour l'édition {{ currentEdition.year }}</h1>
+      <div class="flex items-end flex-col">
+        <mat-checkbox color="primary" (change)="filterApplications($event)">Candidatures complètes uniquement</mat-checkbox>
+        <button (click)="downloadAll()" [disabled]="loadingDownload" class="text-white flex disabled:cursor-not-allowed disabled:bg-opacity-50 items-center space-x-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-xs px-1.5 py-1 mr-2 mb-2 focus:outline-none">
+          <ng-container *ngIf="!loadingDownload">
+            <mat-icon>download</mat-icon> Télécharger les candidatures
+          </ng-container>
+          <ng-container *ngIf="loadingDownload">Téléchargement en cours...</ng-container>
+        </button>
+      </div>
+    </div>
+    <hr>
+    <h1 *ngIf="!displayedApplications.length" class="font-bold text-lg w-full block text-gray-700 text-center">Aucune candidature disponible...</h1>
+    <div *ngIf="displayedApplications.length" class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase">
+        <tr class="bg-gray-50">
+          <th scope="col" class="px-6 py-3">
+            Club
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Joueur
+          </th>
+          <th scope="col" class="px-6 py-3">
+            État candidature
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Moyenne
+          </th>
+          <th scope="col">
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-white'" *ngFor="let application of displayedApplications; let i = index" class="border-b">
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+            {{ application.user.clubName }}
+          </td>
+          <td class="px-6 py-4">
+            {{ application.firstNamePlayer }} - {{ application.lastNamePlayer | uppercase }}
+          </td>
+          <td class="px-6 py-4">
+            <span [class]="'bg-'+getApplicationStatus(application)[1]+'-100 text-'+getApplicationStatus(application)[1]+'-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded'">{{ getApplicationStatus(application)[0] }}</span>
+          </td>
+          <td class="px-6 py-4 text-xs">
+            {{ getApplicationAverage(application) }}
+          </td>
+          <td class="flex justify-end pr-4 space-x-2 py-4">
+            <a [routerLink]="application._id" class="font-medium text-yellow-600 hover:underline">
+              <mat-icon>
+                zoom_in
+              </mat-icon>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

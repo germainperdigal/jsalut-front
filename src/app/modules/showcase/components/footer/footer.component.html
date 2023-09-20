@@ -1,0 +1,42 @@
+<footer class="bg-green py-3">
+  <div class="container flex lg:flex-row flex-col lg:space-y-0 space-y-4 mx-auto">
+    <div class="w-full lg:w-1/2 text-center lg:text-left">
+      <h1 class="text-white font-bold text-xl mb-2">Nous contacter</h1>
+      <ul class="font-light text-white ml-4 gap-y-1.5">
+        <li>{{ showCase.phoneNumber }}</li>
+        <li>{{ showCase.emailAddress }}</li>
+        <li>{{ showCase.addressLine }},<br/>
+          {{ showCase.postalCode }} {{ showCase.city }}</li>
+      </ul>
+    </div>
+    <div class="w-full lg:w-1/2 text-center lg:text-right">
+      <h1 class="text-white font-bold text-xl">Liens utiles</h1>
+      <ul class="font-light text-white ml-4 gap-y-1.5">
+        <li>
+          <a class="hover:underline" routerLink="/espace-comite">Espace comité</a>
+        </li>
+        <li>
+          <a class="hover:underline" routerLink="/">Le trophée</a>
+        </li>
+        <li>
+          <a class="hover:underline" routerLink="/editions">Dernière édition</a>
+        </li>
+        <li>
+          <a class="hover:underline" routerLink="/comite">Le comité</a>
+        </li>
+        <li>
+          <a class="hover:underline" routerLink="/reglement">Règlement</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center">
+    <a class="text-white" target="_blank" href="/assets/mentions-legales.pdf">Mentions légales</a>
+  </div>
+</footer>
+<div *ngIf="displaySocials" class="w-full bg-gold text-xl py-1 justify-center gap-x-12 flex text-center text-[#6B5827]">
+  <a *ngIf="showCase.ytbUrl" href="{{ showCase.ytbUrl }}"><i class="fa-brands fa-youtube"></i></a>
+  <a *ngIf="showCase.igUrl" href="{{ showCase.igUrl }}"><i class="fa-brands fa-instagram"></i></a>
+  <a *ngIf="showCase.fbUrl" href="{{ showCase.fbUrl }}"><i class="fa-brands fa-facebook"></i></a>
+  <a *ngIf="showCase.linkedInUrl" href="{{ showCase.linkedInUrl }}"><i class="fa-brands fa-linkedin"></i></a>
+</div>

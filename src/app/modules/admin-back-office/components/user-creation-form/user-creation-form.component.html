@@ -1,0 +1,35 @@
+<div class="w-[55vw] py-4">
+  <h1 class="font-bold px-4 text-lg">Créer un utilisateur (juge ou admin)</h1>
+  <form (ngSubmit)="createUser()" [formGroup]="creationForm" class="flex flex-col mt-4 w-[50vw] mx-auto">
+    <mat-form-field>
+      <mat-label>Prénom et nom</mat-label>
+      <input matInput formControlName="clubName" type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Adresse e-mail</mat-label>
+      <input matInput formControlName="emailAddress" type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="JUROR">Juge</mat-option>
+        <mat-option value="ADMIN">Admin</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Numéro de téléphone</mat-label>
+      <input matInput digitOnly formControlName="phoneNumber" type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Mot de passe</mat-label>
+      <input matInput formControlName="password" type="password">
+    </mat-form-field>
+    <div class="flex mt-2 items-end justify-end">
+      <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+      <button [disabled]="creationForm.invalid" *ngIf="!loading" type="submit" class="bg-green block mt-4 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded">
+        Créer
+      </button>
+    </div>
+  </form>
+</div>
+

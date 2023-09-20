@@ -1,0 +1,35 @@
+<section class="container mx-auto py-8">
+  <h1 class="font-bold text-2xl text-center text-green mb-8">Espace club</h1>
+    <div class="flex lg:flex-row flex-col-reverse lg:space-y-0 justify-center items-center">
+      <div class="flex w-full lg:w-1/2 px-16 flex-col">
+        <h2 class="text-3xl text-left handwritting text-gold mb-5">Se connecter</h2>
+        <form (submit)="onSubmit()" [formGroup]="loginForm">
+        <div class="w-full">
+          <mat-form-field class="w-full">
+            <mat-label>Adresse e-mail</mat-label>
+            <input type="text" matInput placeholder="Adresse e-mail" formControlName="emailAddress">
+            <mat-error *ngIf="loginForm.get('emailAddress')?.hasError('required')">
+              L'adresse e-mail du club est obligatoire.
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('emailAddress')?.hasError('email')">
+              Merci de vérifier le format de l'adresse e-mail.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-full mt-2">
+          <mat-form-field class="w-full">
+            <mat-label>Mot de passe</mat-label>
+            <input type="password" matInput placeholder="Nom" formControlName="password">
+            <mat-error *ngIf="loginForm.get('password')?.invalid">
+              Le mot de passe est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        </div>
+          <button [disabled]="loginForm.invalid" class="bg-green mx-auto float-right block mt-8 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded">
+          Connexion
+        </button>
+          <span class="block text-md text-center my-4">Pas encore de compte ? <a routerLink="/inscription" class="text-gold underline mt-2 font-bold cursor-pointer">J'inscris mon club !</a></span>
+        </form>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,7 @@
+<section class="container mx-auto p-8">
+  <h1 class="text-3xl text-green font-bold">La galerie</h1>
+  <h4 class="handwritting text-secondary text-2xl">Découvrez le trophée Jean Salut en images !</h4>
+  <div class="grid grid-cols-4 mt-8 gap-y-8">
+    <div *ngFor="let img of gallery; index as i" [style.background-image]="'url(' + buildPictureUrl(img) + ')'" (click)="open(i)" class="w-[250px] hover:cursor-pointer hover:scale-105 transition-all hover:shadow-md bg-center bg-cover h-[250px]"></div>
+  </div>
+</section>

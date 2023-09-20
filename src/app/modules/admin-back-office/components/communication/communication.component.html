@@ -1,0 +1,69 @@
+<div class="h-full p-5">
+  <div class="flex flex-col space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold font-gray-800">Créer une nouvelle communication</h1>
+    </div>
+    <hr>
+    <form [formGroup]="communicationForm" (ngSubmit)="onCreate()">
+      <div class="flex flex-col">
+        <mat-form-field>
+          <mat-label>Titre du message</mat-label>
+          <input type="text" formControlName="title" matInput>
+        </mat-form-field>
+        <mat-label>Contenu<sup>*</sup></mat-label>
+        <quill-editor formControlName="content"></quill-editor>
+        <mat-form-field class="mt-8">
+          <mat-label>Destinataires</mat-label>
+          <mat-select formControlName="distribution"  [multiple]="true">
+            <mat-option [value]="'CLUB'">Club</mat-option>
+            <mat-option [value]="'JUROR'">Jurés</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex items-end justify-end">
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+        <button *ngIf="!loading" [disabled]="communicationForm.invalid" type="submit" class="bg-green block mt-4 disabled:hover:cursor-not-allowed disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded">
+          Diffuser
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="flex flex-col mt-4 space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold font-gray-800">Communications diffusées</h1>
+    </div>
+    <hr>
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase">
+      <tr class="bg-gray-50">
+        <th scope="col" class="px-6 py-3">
+          Titre
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Contenu
+        </th>
+        <th scope="col">
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-white'" *ngFor="let communication of communications; let i = index" class="border-b">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+          {{ communication.title }}
+        </th>
+        <td class="px-6 py-4">
+          {{ communication.content }}
+        </td>
+        <td class="flex justify-end pr-4 space-x-2 py-4">
+          <a class="font-medium text-yellow-600 hover:underline">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a (click)="delete(communication._id)" class="hover:cursor-pointer font-medium text-red-600 hover:underline">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

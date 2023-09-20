@@ -1,0 +1,105 @@
+<section class="container mx-auto py-8">
+  <form (submit)="onSubmit()" [formGroup]="signUpForm">
+  <h1 class="font-bold text-2xl text-center text-green">Inscrire mon club</h1>
+    <div class="block w-full text-center mx-auto mb-8" [innerHTML]="showCase.clubSignUp"></div>
+    <div class="bg-[#fcfcfc] mb-4 rounded-lg shadow-sm">
+    <div class="inline-flex items-center justify-center mb-5 mt-4 w-full">
+      <hr class="w-96 h-[2px] rounded my-8 bg-gold border-0">
+      <span class="absolute px-4 text-3xl text-center handwritting text-gold -translate-x-1/2 bg-[#fcfcfc] left-1/2">Informations du club</span>
+    </div>
+    <div class="md:flex">
+    <div class="w-full md:w-1/2 px-16">
+      <mat-form-field class="w-full">
+        <mat-label>Nom</mat-label>
+        <input type="text" matInput placeholder="Nom" formControlName="clubName">
+        <mat-error *ngIf="signUpForm.get('clubName')?.invalid">
+          Le nom du club est obligatoire.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="w-full md:w-1/2 px-16">
+      <mat-form-field class="w-full">
+        <mat-label>Adresse e-mail</mat-label>
+        <input type="text" matInput placeholder="Adresse e-mail" formControlName="emailAddress">
+        <mat-error *ngIf="signUpForm.get('emailAddress')?.hasError('required')">
+          L'adresse e-mail du club est obligatoire.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('emailAddress')?.hasError('email')">
+          Merci de vérifier le format de l'adresse e-mail.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="md:flex">
+      <div class="w-full md:w-1/2 px-16 mt-4">
+        <mat-form-field class="w-full">
+          <mat-label>Numéro de téléphone</mat-label>
+          <input type="text" digitOnly matInput placeholder="Numéro de téléphone" formControlName="phoneNumber">
+          <mat-error *ngIf="signUpForm.get('phoneNumber')?.invalid">
+            Le numéro de téléphone du club est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="w-full md:w-1/2 px-16 mt-4">
+        <mat-form-field class="w-full">
+          <mat-label>Mot de passe</mat-label>
+          <input type="password" matInput placeholder="Mot de passe" formControlName="password">
+          <mat-error *ngIf="signUpForm.get('password')?.invalid">
+            Le mot de passe est obligatoire.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+    <div *ngIf="currentEdition" class="bg-[#fcfcfc] rounded-lg shadow-sm">
+      <div class="inline-flex items-center justify-center mb-5 mt-4 w-full">
+        <hr class="w-96 h-[2px] rounded my-8 bg-gold border-0">
+        <span class="absolute px-4 text-3xl text-center handwritting text-gold -translate-x-1/2 bg-[#fcfcfc] left-1/2">Votre joueur</span>
+      </div>
+      <div class="md:flex">
+        <div class="w-full md:w-1/2 px-16">
+          <mat-form-field class="w-full">
+            <mat-label>Prénom</mat-label>
+            <input type="text" matInput placeholder="Prénom" formControlName="firstNamePlayer">
+            <mat-error *ngIf="signUpForm.get('firstNamePlayer')?.invalid">
+              Le prénom du joueur est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-full md:w-1/2 px-16">
+          <mat-form-field class="w-full">
+            <mat-label>Nom</mat-label>
+            <input type="text" matInput placeholder="Nom" formControlName="lastNamePlayer">
+            <mat-error *ngIf="signUpForm.get('lastNamePlayer')?.invalid">
+              Le nom du joueur est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="md:flex items-center justify-center">
+        <div class="w-full md:w-1/2 px-16">
+          <mat-form-field class="w-full">
+            <mat-label>Adresse e-mail</mat-label>
+            <input type="text" matInput placeholder="Adresse e-mail" formControlName="emailAddressPlayer">
+            <mat-error *ngIf="signUpForm.get('emailAddressPlayer')?.invalid">
+              L'adresse e-mail du joueur est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="w-full md:w-1/2 px-16">
+          <mat-form-field class="w-full">
+            <mat-label>Numéro de téléphone</mat-label>
+            <input type="text" digitOnly matInput placeholder="Numéro de téléphone" formControlName="phoneNumberPlayer">
+            <mat-error *ngIf="signUpForm.get('phoneNumberPlayer')?.invalid">
+              Le numéro de téléphone du joueur est obligatoire.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="signUpForm.invalid" class="bg-green mx-auto block mt-8 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded">
+      J'inscris mon club et le joueur
+    </button>
+    <span class="block text-center my-4">Déjà inscrit ? <a routerLink="/connexion" class="text-gold underline cursor-pointer">Je me connecte !</a></span>
+  </form>
+</section>

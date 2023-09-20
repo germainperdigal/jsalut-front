@@ -1,0 +1,61 @@
+<div class="h-full p-5">
+  <div class="flex flex-col space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold font-gray-800">{{ editions.length }} éditions</h1>
+      <a routerLink="creer" class="text-white flex items-center space-x-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 focus:outline-none"><mat-icon>add</mat-icon> Créer une nouvelle édition</a>
+    </div>
+    <hr>
+    <div class="relative overflow-x-auto">
+      <div class="flex items-end justify-end">
+        <mat-checkbox color="primary" (change)="filterEditions($event)">Afficher l'édition active</mat-checkbox>
+      </div>
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase">
+        <tr class="bg-gray-50">
+          <th scope="col"></th>
+          <th scope="col" class="px-6 py-3">
+            Année
+          </th>
+          <th scope="col" class="text-center px-6 py-3">
+            Cand. ouverte
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Fin candidature
+          </th>
+          <th scope="col" class="text-center px-6 py-3">
+            Visibilité site
+          </th>
+          <th scope="col">
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-white'" *ngFor="let edition of displayedEditions; let i = index" class="border-b">
+          <th class="text-center">
+            <mat-icon class="text-yellow-300" *ngIf="edition.isActive">star</mat-icon>
+          </th>
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            {{ edition.year }}
+          </th>
+          <td class="px-6 text-center py-4">
+            <mat-icon class="text-red-500" *ngIf="!edition.isActive">close</mat-icon>
+            <mat-icon class="text-green" *ngIf="edition.isActive">check</mat-icon>
+          </td>
+          <td class="px-6 py-4">
+            {{ edition.applicationEndsAt | date:'dd/MM/YYYY' }}
+          </td>
+          <td class="px-6 py-4 text-center">
+            <mat-icon class="text-red-500" *ngIf="!edition.isVisible">close</mat-icon>
+            <mat-icon class="text-green" *ngIf="edition.isVisible">check</mat-icon>
+          </td>
+          <td class="flex justify-end pr-4 space-x-2 py-4">
+            <a [routerLink]="edition._id" class="font-medium text-yellow-600 hover:underline">
+              <mat-icon>edit</mat-icon>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

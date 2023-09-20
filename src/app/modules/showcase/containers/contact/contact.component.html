@@ -1,0 +1,49 @@
+<section class="container mx-auto py-8 px-4 lg:px-0">
+  <h1 class="font-bold text-2xl text-center text-green mb-8">Nous contacter</h1>
+  <div class="flex lg:flex-row flex-col space-y-4 lg:space-y-0 lg:gap-x-8 lg:px-16">
+    <div class="w-full">
+      <form [formGroup]="contactForm" class="flex flex-col gap-y-4">
+        <div class="flex">
+          <div class="w-1/2 flex flex-col items-center justify-center space-y-4 text-2xl text-secondary">
+            <div>{{ showCase.phoneNumber }}</div>
+            <div>{{ showCase.emailAddress }}</div>
+            <div class="flex flex-col items-center">
+              <div>
+                {{ showCase.addressLine }}
+              </div>
+              <div class="text-xl">{{ showCase.postalCode }} {{ showCase.city }}</div>
+            </div>
+          </div>
+          <div class="w-1/2 flex flex-col">
+            <mat-form-field>
+              <mat-label>Nom</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-error *ngIf="contactForm.get('name')?.invalid">
+                Votre nom est obligatoire.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Adresse e-mail</mat-label>
+              <input type="text" matInput formControlName="email">
+              <mat-error *ngIf="contactForm.get('email')?.invalid">
+                Votre adresse e-mail est obligatoire.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Message</mat-label>
+              <textarea matInput
+                        formControlName="message"
+                        cdkAutosizeMinRows="8"></textarea>
+              <mat-error *ngIf="contactForm.get('message')?.invalid">
+                Votre message est obligatoire.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <button [disabled]="contactForm.invalid" class="bg-green disabled:cursor-not-allowed disabled:opacity-50 self-end hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded">
+          Envoyer !
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

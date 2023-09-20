@@ -1,0 +1,65 @@
+<div class="h-full p-5">
+  <a [routerLink]="'../'" class="block flex items-center mb-2 text-blue-500 hover:underline"><mat-icon>chevron_left</mat-icon> Retour à la liste des éditions</a>
+  <div class="flex flex-col space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex justify-between items-center">
+      <div class="flex flex-col items-start justify-between">
+        <div class="flex items-end">
+          <h1 class="text-xl font-bold font-gray-800">Édition {{ edition.year }}</h1>
+        </div>
+      </div>
+      <a class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 focus:outline-none">Supprimer</a>
+    </div>
+    <hr>
+    <form (ngSubmit)="onEdit()" [formGroup]="editionForm">
+      <h1 class="text-green font-bold text-lg mb-2">Détails</h1>
+      <mat-slide-toggle class="mb-2" formControlName="isActive" color="primary">Candidatures ouvertes</mat-slide-toggle>
+      <div class="flex space-x-4">
+        <mat-form-field class="w-full">
+          <mat-label>Année</mat-label>
+          <input type="number" formControlName="year" matInput>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Fin des candidatures</mat-label>
+          <input matInput formControlName="applicationEndsAt" [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <h1 class="text-green font-bold text-lg mt-8 mb-2">Contenu de la page</h1>
+      <mat-slide-toggle class="mb-2" formControlName="isVisible" color="primary">Visible sur le site</mat-slide-toggle>
+      <h1 class="text-green font-bold text-md mt-8 mb-2">Le gagnant</h1>
+      <div class="flex items-center space-x-4">
+        <mat-form-field class="w-full">
+          <mat-label>Nom du gagnant</mat-label>
+          <input type="text" formControlName="winner" matInput>
+        </mat-form-field>
+        <quill-editor class="w-full" formControlName="winnerDescription"></quill-editor>
+      </div>
+      <h1 class="text-green font-bold text-md mt-8 mb-2">L'évènement</h1>
+      <div class="flex items-center space-x-4">
+        <quill-editor class="w-full" formControlName="eventContent"></quill-editor>
+      </div>
+      <h1 class="text-green font-bold text-md mt-8 mb-2">Photos & vidéo</h1>
+      <mat-form-field class="w-full">
+        <mat-label>Lien vidéo</mat-label>
+        <input type="text" formControlName="video" matInput>
+      </mat-form-field>
+      <div>
+        <div class="mb-4" *ngFor="let picInput of picsInput">
+          <mat-label class="mb-2">Photo n°{{ picInput }}</mat-label>
+          <input (change)="this.handleFile($event, picInput)" type="file" accept="image/png, image/jpeg" id="logo" class="block w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-yellow-500 disabled:bg-gray-200 disabled:cursor-not-allowed focus:ring-yellow-500 file:bg-transparent file:border-0 file:bg-gray-100 file:mr-4 file:py-3 file:px-4">
+        </div>
+        <div class="flex items-start">
+          <a (click)="addInputFile()" class="text-white cursor-pointer flex items-center space-x-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 focus:outline-none">Ajouter une photo</a>
+        </div>
+      </div>
+
+      <div class="flex mt-2 items-end justify-end">
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+        <button *ngIf="!loading" type="submit" class="bg-green block mt-4 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded">
+          Mettre à jour
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<header class="w-full flex flex-col px-4 sm:px-0 top-0">
+  <app-menu class="w-full" />
+  <div class="container mx-auto gap-y-4 text-center text-white items-center flex-col justify-center flex flex-grow">
+    <h1 class="text-3xl font-bold" [innerHTML]="heading">
+    </h1>
+    <h2 class="text-md lg:text-lg w-[500px] max-w-full" [innerHTML]="subheading">
+    </h2>
+    <div class="flex items-center gap-x-8">
+      <a routerLink="connexion" class="bg-gold hover:bg-opacity-75 text-white font-medium py-2 px-4 rounded">
+        Espace club
+      </a>
+      <a routerLink="comite" class="bg-transparent hover:bg-white text-white font-medium hover:text-gold py-2 px-4 border border-white hover:border-transparent rounded">
+        Le comité
+      </a>
+    </div>
+  </div>
+  <div class="flex relative bottom-2 items-end justify-end right-2 space-x-2">
+    <a *ngFor="let partner of partners" routerLink="/partenaire/{{ partner._id }}">
+      <img src="{{ apiUrl + '/partners-img/' + partner.smallFileName }}" alt="Partenaire - {{ partner.label }}" class="max-h-[50px]">
+    </a>
+  </div>
+</header>

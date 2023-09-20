@@ -1,0 +1,55 @@
+<div class="h-full p-5">
+  <div class="flex flex-col space-y-4 bg-white p-4 shadow-sm rounded-lg">
+    <div class="flex items-center justify-between">
+      <h1 class="text-xl font-bold font-gray-800">{{ users.length }} utilisateurs</h1>
+      <a (click)="openUserCreation()" class="text-white cursor-pointer flex items-center space-x-2 bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-1.5 mr-2 mb-2 focus:outline-none"><mat-icon>add</mat-icon> Créer un utilisateur</a>
+    </div>
+    <hr>
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase">
+        <tr class="bg-gray-50">
+          <th scope="col" class="px-6 py-3">
+            Club
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Adresse e-mail
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Numéro de téléphone
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Rôle
+          </th>
+          <th scope="col" class="px-6 py-3">
+          </th>
+          <th scope="col">
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr [ngClass]="i % 2 === 1 ? 'bg-gray-50' : 'bg-white'" *ngFor="let user of users  | paginate: { itemsPerPage: 15, currentPage: p }; let i = index" class="border-b">
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+            {{ user.clubName }}
+          </td>
+          <td class="px-6 py-4">
+            {{ user.emailAddress }}
+          </td>
+          <td class="px-6 py-4">
+            {{ user.phoneNumber }}
+          </td>
+          <td class="px-6 py-4 text-xs">
+            <span [classList]="getBadgeClass(user)">{{ user.role | titlecase }}</span>
+          </td>
+          <td class="flex justify-end pr-4 space-x-2 py-4">
+            <a [routerLink]="user._id" class="font-medium text-yellow-600 hover:underline"><mat-icon>edit</mat-icon></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="flex justify-end mt-2">
+        <pagination-controls (pageChange)="p = $event" nextLabel="Suivant" previousLabel="Précédent"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
