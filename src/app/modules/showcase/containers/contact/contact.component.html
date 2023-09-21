@@ -3,8 +3,8 @@
   <div class="flex lg:flex-row flex-col space-y-4 lg:space-y-0 lg:gap-x-8 lg:px-16">
     <div class="w-full">
       <form [formGroup]="contactForm" class="flex flex-col gap-y-4">
-        <div class="flex">
-          <div class="w-1/2 flex flex-col items-center justify-center space-y-4 text-2xl text-secondary">
+        <div class="flex lg:flex-row space-y-8 lg:space-y-0 flex-col">
+          <div class="w-full lg:w-1/2 flex flex-col items-center justify-center space-y-4 text-2xl text-secondary">
             <div>{{ showCase.phoneNumber }}</div>
             <div>{{ showCase.emailAddress }}</div>
             <div class="flex flex-col items-center">
@@ -14,7 +14,7 @@
               <div class="text-xl">{{ showCase.postalCode }} {{ showCase.city }}</div>
             </div>
           </div>
-          <div class="w-1/2 flex flex-col">
+          <div class="w-full lg:w-1/2 flex flex-col">
             <mat-form-field>
               <mat-label>Nom</mat-label>
               <input type="text" matInput formControlName="name">

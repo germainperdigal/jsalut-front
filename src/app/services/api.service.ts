@@ -11,7 +11,7 @@ import { Partner } from 'src/app/models/partner.model';
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = 'http://localhost:3000';
+  apiUrl = 'https://jeansalut.agence-emblem.fr/api';
 
   constructor(
     private readonly httpClient: HttpClient,

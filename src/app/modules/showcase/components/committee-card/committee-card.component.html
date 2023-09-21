@@ -3,7 +3,7 @@
 >
   <span class="z-50 discover absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-xl bg-black text-white text-lg font-bold bg-opacity-50"><mat-icon class="mr-2">search</mat-icon> Découvrir {{ member.label }}</span>
   <div class="absolute pic">
-    <img src="{{ apiUrl }}/committee-img/{{ member.fileName }}" class="relative h-[95px] w-[95px] rounded-full" alt="">
+    <img src="{{ apiUrl }}/committee-img/{{ member.fileName }}" class="relative h-[95px] w-[95px] rounded-full" alt="{{ member.label }}">
   </div>
   <div class="w-full player-infos text-right">
     <h2 class="font-bold text-xl" [ngClass]="isLightMode ? 'text-green' : 'text-white'">{{ member.label }}</h2>
